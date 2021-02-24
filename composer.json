@@ -1,0 +1,16 @@
+{
+    "name": "eecarrillo/excel-planilla-unm",
+    "description": "Procesador de excel para text planilla",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Efren Carrillo",
+            "email": "desarrollador2@unm.edu.pe"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.19",
+        "phpoffice/phpspreadsheet": "^1.16"
+    },
+    "license": "propietary"
+}
