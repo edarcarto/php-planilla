@@ -46,7 +46,40 @@ class Api extends Controller
                     $spreadSheet = $reader->load($dest_path);
                     $dataAsAssocArray = $spreadSheet->getActiveSheet()->toArray();
                     $separadorCampo = ";";
-                    $periodo = [];
+                    $validarVacios = false;
+                    $nombreDelArchivo = "PLL".str_pad($dataAsAssocArray[0][0],6,STR_PAD_LEFT).$dataAsAssocArray[0][1];
+                    $nombreDelArchivo .= str_pad($dataAsAssocArray[0][2],2,STR_PAD_LEFT).$dataAsAssocArray[0][3];
+                    $nombreDelArchivo .= $dataAsAssocArray[0][4].str_pad($dataAsAssocArray[0][5],2,STR_PAD_LEFT);
+                    $nombreDelArchivo .= ".txt";
+                    $archivo = ((file_exists("tmp/".$nombreDelArchivo)) ? fopen("tmp/".$nombreDelArchivo,"a") : fopen("tmp/".$nombreDelArchivo,"w");
+                    for ($i=0; $i < count($dataAsAssocArray); $i++) {
+                        $campo0 = (isset($dataAsAssocArray[$i][0])) ? $dataAsAssocArray[$i][0] : "00";
+                        $campo1 = (isset($dataAsAssocArray[$i][1])) ? $dataAsAssocArray[$i][1] : "00";
+                        $campo2 = (isset($dataAsAssocArray[$i][2])) ? $dataAsAssocArray[$i][2] : "00";
+                        $campo3 = (isset($dataAsAssocArray[$i][3])) ? $dataAsAssocArray[$i][3] : "00";
+                        $campo4 = (isset($dataAsAssocArray[$i][4])) ? $dataAsAssocArray[$i][4] : "00";
+                        $campo5 = (isset($dataAsAssocArray[$i][5])) ? $dataAsAssocArray[$i][5] : "00";
+                        $campo6 = (isset($dataAsAssocArray[$i][6])) ? $dataAsAssocArray[$i][6] : "0.00";
+                        $campo7 = (isset($dataAsAssocArray[$i][7])) ? $dataAsAssocArray[$i][7] : "0.00";
+                        $campo8 = (isset($dataAsAssocArray[$i][8])) ? $dataAsAssocArray[$i][8] : "0.00";
+                        $campo9 = (isset($dataAsAssocArray[$i][9])) ? $dataAsAssocArray[$i][9] : "0.00";
+                        $campo10 = (isset($dataAsAssocArray[$i][10])) ? $dataAsAssocArray[$i][10] : "0.00";
+                        $campo11 = (isset($dataAsAssocArray[$i][11])) ? $dataAsAssocArray[$i][11] : "0.00";
+                        $campo12 = (isset($dataAsAssocArray[$i][12])) ? $dataAsAssocArray[$i][12] : "0.00";
+                        $if($i == 0){
+                            $fila = $campo0.$separadorCampo.$campo1.$separadorCampo.$campo2.$separadorCampo;
+                            $fila .= $campo3.$separadorCampo.$campo4.$separadorCampo.$campo5.$separadorCampo;
+                            $fila .= $campo6.$separadorCampo.$campo7.$separadorCampo.$campo8.$separadorCampo;
+                            $fila .= $campo9.$separadorCampo.$campo10.$separadorCampo.$campo11.$separadorCampo.$campo12;
+                        }else{
+                            $fila = $campo0.$separadorCampo.$campo1.$separadorCampo.$campo2.$separadorCampo;
+                            $fila .= $campo3.$separadorCampo.$campo4.$separadorCampo.$campo5.$separadorCampo;
+                            $fila .= $campo6;
+                        }
+                        fwrite($archivo, PHP_EOL ."$fila");
+                    }
+                    fclose($archivo);
+                    /*$periodo = [];
                     $tipoIngresos = [];
                     $tipoEgresos = [];
 					$numberLinesDefault = 16;
@@ -98,7 +131,7 @@ class Api extends Controller
                         $body .="50,89";
 					}
 					echo $body;
-					echo "</br>";
+					echo "</br>";*/
                 }
                 else
                 {
