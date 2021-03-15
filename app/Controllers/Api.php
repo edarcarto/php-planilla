@@ -51,7 +51,8 @@ class Api extends Controller
                     $nombreDelArchivo .= str_pad($dataAsAssocArray[0][2],2,STR_PAD_LEFT).$dataAsAssocArray[0][3];
                     $nombreDelArchivo .= $dataAsAssocArray[0][4].str_pad($dataAsAssocArray[0][5],2,STR_PAD_LEFT);
                     $nombreDelArchivo .= ".txt";
-                    $archivo = ((file_exists("tmp/".$nombreDelArchivo)) ? fopen("tmp/".$nombreDelArchivo,"a") : fopen("tmp/".$nombreDelArchivo,"w");
+                    $retVal = (condition) ? a : b ;
+                    $archivo = (file_exists("tmp/".$nombreDelArchivo)) ? fopen("tmp/".$nombreDelArchivo,"a") : fopen("tmp/".$nombreDelArchivo,"w");
                     for ($i=0; $i < count($dataAsAssocArray); $i++) {
                         $campo0 = (isset($dataAsAssocArray[$i][0])) ? $dataAsAssocArray[$i][0] : "00";
                         $campo1 = (isset($dataAsAssocArray[$i][1])) ? $dataAsAssocArray[$i][1] : "00";
@@ -66,7 +67,7 @@ class Api extends Controller
                         $campo10 = (isset($dataAsAssocArray[$i][10])) ? $dataAsAssocArray[$i][10] : "0.00";
                         $campo11 = (isset($dataAsAssocArray[$i][11])) ? $dataAsAssocArray[$i][11] : "0.00";
                         $campo12 = (isset($dataAsAssocArray[$i][12])) ? $dataAsAssocArray[$i][12] : "0.00";
-                        $if($i == 0){
+                        if($i == 0){
                             $fila = $campo0.$separadorCampo.$campo1.$separadorCampo.$campo2.$separadorCampo;
                             $fila .= $campo3.$separadorCampo.$campo4.$separadorCampo.$campo5.$separadorCampo;
                             $fila .= $campo6.$separadorCampo.$campo7.$separadorCampo.$campo8.$separadorCampo;
